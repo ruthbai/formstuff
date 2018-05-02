@@ -10,15 +10,19 @@ class App extends Component {
   } //connects to this.state.fields
 
 
-  onSubmit = (fields) => {
-    this.setState({ fields });
-    console.log("App comp got: ", fields);
+  onChange = updatedValue => {
+    this.setState({ 
+      fields: {
+      ...this.state.fields, //keep original value
+      ...updatedValue //but show updated version at same time
+    }
+    });
   };
 
   render() {
     return (
       <div className="App">
-        <Form onSubmit={fields => this.onSubmit(fields)}/> {/* props passed here */}
+        <Form onChange={fields => this.onChange(fields)}/> {/* props passed here */}
         <p>{JSON.stringify(this.state.fields, null, 2)}</p> {/* this displays submitted info on page */}
       </div>
     );

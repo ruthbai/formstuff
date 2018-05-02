@@ -11,6 +11,7 @@ export default class Form extends React.Component {
 
 
     change = e => {
+        this.props.onChange({[e.target.name]: e.target.value});
         this.setState({
             [e.target.name]: e.target.value
         });
@@ -19,13 +20,20 @@ export default class Form extends React.Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        this.props.onSubmit(this.state); // this connects to App.js on submit it will pass data to app.js
+        // this.props.onSubmit(this.state); // this connects to App.js on submit it will pass data to app.js
+        this.props.onChange({
+            firstName: '',
+            lastName: '',
+            userName: '',
+            email: '',
+            password: ''//this will clear words underneath when you submit the form..
+        })
         this.setState({
-        firstName: '',
-        lastName: '',
-        userName: '',
-        email: '',
-        password: ''//this will clear passwords on screen after submit
+            firstName: '',
+            lastName: '',
+            userName: '',
+            email: '',
+            password: ''//this will clear passwords on screen after submit
         })
     }
 
